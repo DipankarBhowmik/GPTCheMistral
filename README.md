@@ -129,17 +129,10 @@ cd GPTCheMistral
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install dependencies
-pip install -r requirements.txt
 ```
 
-### 2. Train the Model (30–60 minutes on T4)
 
-```bash
-python train.py --config configs/train_config.yaml
-```
-
-### 3. Run Inference
+### 2. Run Inference
 
 ```python
 from chemgpt import ChemistryLLM
@@ -180,10 +173,6 @@ accelerate==0.31.0
 huggingface_hub==0.23.4
 ```
 
-See `requirements.txt` for full list.
-
----
-
 ## 🎓 Training
 
 ### Dataset Preparation
@@ -209,30 +198,6 @@ dataset = dataset.train_test_split(test_size=0.05, seed=42)
 ```json
 {"text": "What is the molecular formula of aspirin? C₉H₈O₄ (2-Acetoxybenzoic acid)"}
 {"text": "What are the properties of caffeine? Caffeine is a natural stimulant with molecular formula C₈H₁₀N₄O₂..."}
-```
-
-### Start Training
-
-```bash
-# Basic training
-python train.py
-
-# With custom config
-python train.py --config configs/advanced_config.yaml
-
-# Resume from checkpoint
-python train.py --resume_from_checkpoint ./outputs/chem_mistral/checkpoint-50
-```
-
-### Monitor Training
-
-```python
-# TensorBoard
-tensorboard --logdir outputs/chem_mistral/runs
-
-# Weights & Biases (optional)
-wandb login
-python train.py --use_wandb
 ```
 
 ### Training Metrics
@@ -323,17 +288,6 @@ for q, r in zip(questions, results):
 
 ## 📊 Results
 
-### Test Set Performance
-
-Evaluation on 250 held-out chemistry Q&A pairs:
-
-| Metric | Score |
-|--------|-------|
-| BLEU Score | 0.68 |
-| ROUGE-L | 0.72 |
-| Perplexity | 12.4 |
-| Factual Accuracy (Manual) | 82% |
-| Hallucination Rate | 8% |
 
 ### Sample Outputs
 
@@ -359,53 +313,6 @@ and is commonly used as a solvent and in alcoholic beverages.
 ```
 
 ---
-
-## 📁 Project Structure
-
-```
-GPTCheMistral/
-├── README.md                      # This file
-├── requirements.txt               # Python dependencies
-├── setup.py                       # Package setup
-├── LICENSE                        # MIT License
-│
-├── src/
-│   ├── __init__.py
-│   ├── train.py                   # Main training script
-│   ├── inference.py               # Inference pipeline
-│   ├── data/
-│   │   ├── loader.py              # Dataset loading
-│   │   ├── processor.py           # Data preprocessing
-│   │   └── validators.py          # Data validation
-│   ├── model/
-│   │   ├── config.py              # Model configs
-│   │   ├── quantization.py        # BitsAndBytes setup
-│   │   └── lora.py                # LoRA configuration
-│   └── utils/
-│       ├── logging.py             # Logging setup
-│       ├── metrics.py             # Evaluation metrics
-│       └── checkpoint.py          # Checkpointing
-│
-├── configs/
-│   ├── train_config.yaml          # Training hyperparameters
-│   ├── lora_config.yaml           # LoRA settings
-│   └── inference_config.yaml      # Inference settings
-│
-├── tests/
-│   ├── test_data_loading.py
-│   ├── test_model_training.py
-│   └── test_inference.py
-│
-├── notebooks/
-│   └── chemgpt.ipynb              # Full training notebook
-│
-│
-└── outputs/
-    └── chem_mistral/              # Model checkpoints & final weights
-        ├── checkpoint-50/
-        ├── checkpoint-100/
-        └── final/
-```
 
 ---
 
