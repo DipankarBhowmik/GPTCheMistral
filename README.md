@@ -168,13 +168,6 @@ cd GPTCheMistral
 pip install -e .
 ```
 
-### Docker
-
-```bash
-docker build -t chemgpt:latest .
-docker run --gpus all -it chemgpt:latest
-```
-
 ### Requirements
 
 ```
@@ -406,9 +399,6 @@ GPTCheMistral/
 ├── notebooks/
 │   └── chemgpt.ipynb              # Full training notebook
 │
-├── docker/
-│   ├── Dockerfile                 # Container definition
-│   └── docker-compose.yml         # Multi-service setup
 │
 └── outputs/
     └── chem_mistral/              # Model checkpoints & final weights
