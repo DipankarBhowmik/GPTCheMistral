@@ -21,7 +21,6 @@ Teach a Large Language Model to speak chemistry with domain-specific knowledge a
 - [Training](#training)
 - [Inference](#inference)
 - [Results](#results)
-- [Project Structure](#project-structure)
 - [Medium Article](#medium-article)
 - [FAQ](#faq)
 - [Contributing](#contributing)
